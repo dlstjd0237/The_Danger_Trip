@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerLook : MonoBehaviour
 {
-    public Camera _mainCam;
+    public Transform _mainCam;
     private float xRotation = 0f;
 
     public float xSensitivity = 30f;
