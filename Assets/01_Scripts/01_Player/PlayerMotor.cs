@@ -8,11 +8,13 @@ public class PlayerMotor : MonoBehaviour
     private Vector3 _playerVelocity;
     private bool _isGround;
     private float _gravity = -9.8f;
+    private PlayerAnimationControll _ani;
     [SerializeField] private float _speed = 2;
     [SerializeField] private float _jumpPower = 1;
     private void Awake()
     {
         _character = GetComponent<CharacterController>();
+        _ani = GetComponent<PlayerAnimationControll>();
     }
     private void Update()
     {
@@ -20,6 +22,10 @@ public class PlayerMotor : MonoBehaviour
     }
     public void PlayerMove(Vector2 input)
     {
+        if(input != Vector2.zero)
+        {
+            _ani.Walking(input);
+        }
         Vector3 moveDir = Vector3.zero;
         moveDir.x = input.x;
         moveDir.z = input.y;
