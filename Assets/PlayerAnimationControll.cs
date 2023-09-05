@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerAnimationControll : MonoBehaviour
 {
     #region 애니메이션 해싱
-    //private readonly int Walking = Animator.StringToHash("DI") 
+    private readonly int Walking = Animator.StringToHash("Dir");
     #endregion
 
     private Animator _animator;
@@ -13,8 +13,14 @@ public class PlayerAnimationControll : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    public void Walking(Vector3 dir)
+    public void WalkingAni(Vector3 dir)
     {
-        //_animator.SetFloat()
+       
+        _animator.SetFloat(Walking, dir.z);
+    }
+
+    public void ReSetAni()
+    {
+        _animator.SetFloat(Walking, 0);
     }
 }

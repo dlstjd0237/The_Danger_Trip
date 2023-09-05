@@ -22,13 +22,17 @@ public class PlayerMotor : MonoBehaviour
     }
     public void PlayerMove(Vector2 input)
     {
-        if(input != Vector2.zero)
-        {
-            _ani.Walking(input);
-        }
         Vector3 moveDir = Vector3.zero;
         moveDir.x = input.x;
         moveDir.z = input.y;
+        if (moveDir != Vector3.zero)
+        {
+            _ani.WalkingAni(moveDir.normalized  );
+        }
+        else
+        {
+            _ani.ReSetAni();
+        }
         _character.Move(transform.TransformDirection(moveDir) * _speed * Time.deltaTime);
         _playerVelocity.y += _gravity * Time.deltaTime;
         if (_isGround && _playerVelocity.y < 0)
