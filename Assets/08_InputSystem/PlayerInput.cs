@@ -154,6 +154,45 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Interact"",
+            ""id"": ""cb8069ea-8228-4ad8-9378-6ac78b77da84"",
+            ""actions"": [
+                {
+                    ""name"": ""InteractOff"",
+                    ""type"": ""Button"",
+                    ""id"": ""3c80fc04-8ff5-43ff-b661-42bf0a6abc27"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d901be7a-fee3-4bd5-a5d4-e23271e4a2ac"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InteractOff"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""beb85640-9340-4c29-9c02-5c1c9c467774"",
+                    ""path"": ""<Mouse>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InteractOff"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -164,6 +203,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Floor_PrresE = m_Floor.FindAction("PrresE", throwIfNotFound: true);
         m_Floor_Look = m_Floor.FindAction("Look", throwIfNotFound: true);
         m_Floor_Jump = m_Floor.FindAction("Jump", throwIfNotFound: true);
+        // Interact
+        m_Interact = asset.FindActionMap("Interact", throwIfNotFound: true);
+        m_Interact_InteractOff = m_Interact.FindAction("InteractOff", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -291,11 +333,61 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public FloorActions @Floor => new FloorActions(this);
+
+    // Interact
+    private readonly InputActionMap m_Interact;
+    private List<IInteractActions> m_InteractActionsCallbackInterfaces = new List<IInteractActions>();
+    private readonly InputAction m_Interact_InteractOff;
+    public struct InteractActions
+    {
+        private @PlayerInput m_Wrapper;
+        public InteractActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @InteractOff => m_Wrapper.m_Interact_InteractOff;
+        public InputActionMap Get() { return m_Wrapper.m_Interact; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InteractActions set) { return set.Get(); }
+        public void AddCallbacks(IInteractActions instance)
+        {
+            if (instance == null || m_Wrapper.m_InteractActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_InteractActionsCallbackInterfaces.Add(instance);
+            @InteractOff.started += instance.OnInteractOff;
+            @InteractOff.performed += instance.OnInteractOff;
+            @InteractOff.canceled += instance.OnInteractOff;
+        }
+
+        private void UnregisterCallbacks(IInteractActions instance)
+        {
+            @InteractOff.started -= instance.OnInteractOff;
+            @InteractOff.performed -= instance.OnInteractOff;
+            @InteractOff.canceled -= instance.OnInteractOff;
+        }
+
+        public void RemoveCallbacks(IInteractActions instance)
+        {
+            if (m_Wrapper.m_InteractActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IInteractActions instance)
+        {
+            foreach (var item in m_Wrapper.m_InteractActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_InteractActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public InteractActions @Interact => new InteractActions(this);
     public interface IFloorActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnPrresE(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+    }
+    public interface IInteractActions
+    {
+        void OnInteractOff(InputAction.CallbackContext context);
     }
 }

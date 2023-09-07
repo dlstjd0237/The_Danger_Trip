@@ -132,6 +132,45 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Interact",
+            "id": "cb8069ea-8228-4ad8-9378-6ac78b77da84",
+            "actions": [
+                {
+                    "name": "InteractOff",
+                    "type": "Button",
+                    "id": "3c80fc04-8ff5-43ff-b661-42bf0a6abc27",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d901be7a-fee3-4bd5-a5d4-e23271e4a2ac",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InteractOff",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "beb85640-9340-4c29-9c02-5c1c9c467774",
+                    "path": "<Mouse>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InteractOff",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
