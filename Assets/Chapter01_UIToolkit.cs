@@ -22,6 +22,7 @@ public class Chapter01_UIToolkit : MonoBehaviour
         _dialogue = _dot.rootVisualElement.Q<Label>("Dialogue");
     }
 
+
     public void OnPostIt(string contents)
     {
         _background.AddToClassList("on");

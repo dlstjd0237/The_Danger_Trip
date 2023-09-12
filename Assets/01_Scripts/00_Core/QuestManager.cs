@@ -19,4 +19,9 @@ public class QuestManager : Singleton<QuestManager>
     {
         return QuestDic[QuestKey];
     }
+
+    public void TriggerQuesManager()
+    {
+
+    }
 }

@@ -14,8 +14,8 @@ public class Chapter01_Controll : MonoBehaviour
     private void Start()
     {
         Sequence q1 = DOTween.Sequence();
-        q1.Append(_player.DOMove(bedDir, 3));
-        q1.Join(_player.DORotate(new Vector3(0,90,0), 3));
+        q1.Append(_player.DOMove(bedDir, 5));
+        q1.Join(_player.DORotate(new Vector3(0,90,0), 5));
         q1.AppendCallback(() => { _player.GetComponent<CharacterController>().enabled = true; _player.GetComponent<InputManager>().enabled = true; });
     }
 }
