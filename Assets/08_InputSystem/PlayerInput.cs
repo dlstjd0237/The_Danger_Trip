@@ -62,6 +62,24 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SprintOn"",
+                    ""type"": ""Button"",
+                    ""id"": ""280c24c3-ab19-43b7-b08b-1496e91fe997"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SprintOff"",
+                    ""type"": ""Button"",
+                    ""id"": ""6d378c68-0f2b-49c5-a691-684042facf94"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -152,6 +170,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e151eb8b-c9f5-4143-870f-5ff05ca980ba"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SprintOn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3034096f-56aa-4c3d-80f3-4a24161ad0a8"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SprintOff"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -203,6 +243,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Floor_PrresE = m_Floor.FindAction("PrresE", throwIfNotFound: true);
         m_Floor_Look = m_Floor.FindAction("Look", throwIfNotFound: true);
         m_Floor_Jump = m_Floor.FindAction("Jump", throwIfNotFound: true);
+        m_Floor_SprintOn = m_Floor.FindAction("SprintOn", throwIfNotFound: true);
+        m_Floor_SprintOff = m_Floor.FindAction("SprintOff", throwIfNotFound: true);
         // Interact
         m_Interact = asset.FindActionMap("Interact", throwIfNotFound: true);
         m_Interact_InteractOff = m_Interact.FindAction("InteractOff", throwIfNotFound: true);
@@ -271,6 +313,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Floor_PrresE;
     private readonly InputAction m_Floor_Look;
     private readonly InputAction m_Floor_Jump;
+    private readonly InputAction m_Floor_SprintOn;
+    private readonly InputAction m_Floor_SprintOff;
     public struct FloorActions
     {
         private @PlayerInput m_Wrapper;
@@ -279,6 +323,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @PrresE => m_Wrapper.m_Floor_PrresE;
         public InputAction @Look => m_Wrapper.m_Floor_Look;
         public InputAction @Jump => m_Wrapper.m_Floor_Jump;
+        public InputAction @SprintOn => m_Wrapper.m_Floor_SprintOn;
+        public InputAction @SprintOff => m_Wrapper.m_Floor_SprintOff;
         public InputActionMap Get() { return m_Wrapper.m_Floor; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -300,6 +346,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @SprintOn.started += instance.OnSprintOn;
+            @SprintOn.performed += instance.OnSprintOn;
+            @SprintOn.canceled += instance.OnSprintOn;
+            @SprintOff.started += instance.OnSprintOff;
+            @SprintOff.performed += instance.OnSprintOff;
+            @SprintOff.canceled += instance.OnSprintOff;
         }
 
         private void UnregisterCallbacks(IFloorActions instance)
@@ -316,6 +368,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @SprintOn.started -= instance.OnSprintOn;
+            @SprintOn.performed -= instance.OnSprintOn;
+            @SprintOn.canceled -= instance.OnSprintOn;
+            @SprintOff.started -= instance.OnSprintOff;
+            @SprintOff.performed -= instance.OnSprintOff;
+            @SprintOff.canceled -= instance.OnSprintOff;
         }
 
         public void RemoveCallbacks(IFloorActions instance)
@@ -385,6 +443,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnPrresE(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnSprintOn(InputAction.CallbackContext context);
+        void OnSprintOff(InputAction.CallbackContext context);
     }
     public interface IInteractActions
     {

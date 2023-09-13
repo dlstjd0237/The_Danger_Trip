@@ -40,6 +40,17 @@ public class PlayerMotor : MonoBehaviour
         _character.Move(_playerVelocity * Time.deltaTime);
     }
 
+    public void SprintOn()
+    {
+        _speed *= 1.5f;
+        _ani.RunOn();
+    }
+    public void SprintOff()
+    {
+        _speed /= 1.5f;
+        _ani.RunOff();
+    }
+
     public void Jump()
     {
         if (_isGround)

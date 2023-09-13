@@ -15,6 +15,8 @@ public class InputManager : MonoBehaviour
         _playerMotor = GetComponent<PlayerMotor>();
         _playerLook = GetComponent<PlayerLook>();
         OnFloor.Jump.performed += ctx => _playerMotor.Jump();
+        OnFloor.SprintOn.performed += ctx => _playerMotor.SprintOn();
+        OnFloor.SprintOff.performed += ctx => _playerMotor.SprintOff();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -27,6 +29,8 @@ public class InputManager : MonoBehaviour
     {
         _playerLook.ProcessLook(OnFloor.Look.ReadValue<Vector2>());
     }
+
+
     private void OnDisable()
     {
         _playerInput.Disable();
