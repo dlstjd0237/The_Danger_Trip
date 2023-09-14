@@ -3,9 +3,9 @@ using UnityEngine;
 public class PlayerAnimationControll : MonoBehaviour
 {
     #region 애니메이션 해싱
-    private readonly int Walking = Animator.StringToHash("Dir");
+    private readonly int DirY = Animator.StringToHash("DirY");
     private readonly int Runing = Animator.StringToHash("IsRun");
-    private readonly int WalkingX = Animator.StringToHash("DirX");
+    private readonly int DirX = Animator.StringToHash("DirX");
     #endregion
 
     private Animator _animator;
@@ -18,8 +18,8 @@ public class PlayerAnimationControll : MonoBehaviour
     public void WalkingAni(Vector3 dir)
     {
         Debug.Log(dir.x);
-        _animator.SetFloat(Walking, dir.z);
-        _animator.SetFloat(WalkingX, dir.x);
+        _animator.SetFloat(DirY, dir.z, .1f, Time.fixedDeltaTime);
+        _animator.SetFloat(DirX, dir.x,.1f,Time.fixedDeltaTime);
     }
 
     public void RunOn()
@@ -33,7 +33,7 @@ public class PlayerAnimationControll : MonoBehaviour
 
     public void ReSetAni()
     {
-        _animator.SetFloat(Walking, 0);
-        _animator.SetFloat(WalkingX, 0);
+        _animator.SetFloat(DirY, 0);
+        _animator.SetFloat(DirX, 0);
     }
 }
