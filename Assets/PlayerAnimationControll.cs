@@ -17,7 +17,6 @@ public class PlayerAnimationControll : MonoBehaviour
 
     public void WalkingAni(Vector3 dir)
     {
-        Debug.Log(dir.x);
         _animator.SetFloat(DirY, dir.z, .1f, Time.fixedDeltaTime);
         _animator.SetFloat(DirX, dir.x,.1f,Time.fixedDeltaTime);
     }

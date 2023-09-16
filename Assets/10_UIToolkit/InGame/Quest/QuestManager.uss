@@ -1,0 +1,5 @@
+#QuestButton.on {
+    margin-left: -400px;
+    opacity: 0;
+    -unity-background-image-tint-color: rgb(82, 130, 0);
+}
