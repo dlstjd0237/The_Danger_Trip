@@ -41,13 +41,16 @@ public class QuestManager : Singleton<QuestManager>
 
     public void QuestOn(int QuestKeyValue)
     {
-        QuestUIOn();
-        _currentQuestKey = QuestKeyValue;
+       
+        QuestUIOn();//퀘스트 UI 켜주고
+        _currentQuestKey = QuestKeyValue; //현제 키값을 설정해주고
         _currentProgress = QuestDic[_currentQuestKey].MinQuestProgress;
         _maxProgress = QuestDic[_currentQuestKey].MaxQuestProgress;
         _headLabel.text = QuestDic[_currentQuestKey].TitleName;
         _bodyLavel.text = QuestDic[_currentQuestKey].QuestContents+$" {_currentProgress}/{_maxProgress}";
-        
+        Debug.Log(_currentQuestKey);
+
+
     }
 
     public void SetProgress()

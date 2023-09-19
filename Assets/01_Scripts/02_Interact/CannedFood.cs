@@ -6,6 +6,7 @@ public class CannedFood : Interactable
 {
     protected override void Interact()
     {
+        QuestManager.Instance.SetProgress();
         Destroy(gameObject);
     }
 }

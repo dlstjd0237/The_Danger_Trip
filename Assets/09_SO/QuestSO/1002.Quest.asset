@@ -15,5 +15,5 @@ MonoBehaviour:
   _titleName: "\uC5EC\uD589\uC900\uBE442"
   _keyValue: 1002
   _questContents: "\uD1B5\uC870\uB9BC \uCC59\uAE30\uAE30"
-  _maxQuestProgress: 0
+  _maxQuestProgress: 6
   _minQuestProgress: 0
