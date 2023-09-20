@@ -9,19 +9,26 @@ public class Postit : Interactable
     [SerializeField] private GameObject sign;
     [SerializeField] private GameObject minimapSign;
 
+    private OutlineShader outlineShader;
 
-
+    private void Awake()
+    {
+        outlineShader = GetComponent<OutlineShader>();
+    }
     protected override void Interact()
     {
         promptMessage = string.Empty;
         if (!UIToolkitCs.OnElement && _count == 0)
         {
             QuestManager.Instance.SetProgress();
-            UIToolkitCs.OnPostIt("내일 해야할일\n1. 통조림 챙기기\n2.문단속 잘하기\n3.안전하게 목적지 까지 도착하기");
+            UIToolkitCs.OnPostIt("해야할일\n1. 통조림 챙기기\n2.문단속 잘하기\n3.안전하게 목적지 까지 도착하기");
             _count++;
             sign.SetActive(false);
             minimapSign.SetActive(false);
             Invoke("Cool", 3);
+            outlineShader.Con = true;
+            outlineShader.ShaderOff();
+            outlineShader.enabled = false;
         }
 
     }

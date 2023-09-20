@@ -5,6 +5,6 @@ using UnityEngine;
 
 public class QuestSOList : ScriptableObject 
 {
-    public List<QuestSO> questSo = new List<QuestSO>();
+    public List<QuestSO> QuestSo = new List<QuestSO>();
     
 }

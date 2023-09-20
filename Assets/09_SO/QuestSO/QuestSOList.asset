@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d500a3ff33fe5748b687272e7325731, type: 3}
   m_Name: QuestSOList
   m_EditorClassIdentifier: 
-  questSo:
+  QuestSo:
   - {fileID: 11400000, guid: 1797fa006e6bb9e45a0b00289b16dbf2, type: 2}
   - {fileID: 11400000, guid: e459fed6cb83291418b65dd6a211cc2c, type: 2}

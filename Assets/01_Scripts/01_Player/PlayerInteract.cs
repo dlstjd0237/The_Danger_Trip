@@ -6,6 +6,7 @@ public class PlayerInteract : MonoBehaviour
     private PlayerUI _playerUI;
     private InputManager _inputManager;
     private int _interactMask;
+    
     [SerializeField] private float _distance = 2;
     private void Awake()
     {
@@ -26,11 +27,22 @@ public class PlayerInteract : MonoBehaviour
             {
                 Interactable _interactable = _hitInfo.collider.GetComponent<Interactable>();
                 _playerUI.UpdateText(_interactable.promptMessage);
+                if(_hitInfo.collider.GetComponent<OutlineShader>()!=null)
+                {
+                    OutlineShader _outlineShader = _hitInfo.collider.GetComponent<OutlineShader>();
+                    GameManager.Instance.LookInteract = true;
+                    _outlineShader.ShaderOn();
+                }             
                 if (_inputManager.OnFloor.PrresE.triggered)
                 {
                     _interactable.BassInteract();
                 }
             }
+           
+        }
+        else 
+        {
+            GameManager.Instance.LookInteract = false;
         }
     }
 }

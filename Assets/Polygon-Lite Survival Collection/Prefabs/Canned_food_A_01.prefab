@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7687553544899347423}
   - component: {fileID: 4387234876935970853}
   - component: {fileID: 119560856169867905}
+  - component: {fileID: 6223741852036440090}
   m_Layer: 7
   m_Name: Canned_food_A_01
   m_TagString: Untagged
@@ -120,3 +121,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC7C1\uACA8\uB450\uAE30"
+--- !u!114 &6223741852036440090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8191855616036889098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f413e802dd3d5344083f656c0062bc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OutlineMat: {fileID: 2100000, guid: 8634e380661e3db4e8de8e0fd0f4d2ae, type: 2}
