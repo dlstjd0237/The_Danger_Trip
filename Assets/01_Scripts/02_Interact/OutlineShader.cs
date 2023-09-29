@@ -7,7 +7,9 @@ public class OutlineShader : MonoBehaviour
     private Renderer _renderer;
     private List<Material> materialList = new List<Material>();
     [SerializeField] private Material OutlineMat;
+    [HideInInspector]
     public bool Controll = false;
+    [HideInInspector]
     public bool Con = false;
     private void Awake()
     {
@@ -42,7 +44,6 @@ public class OutlineShader : MonoBehaviour
     public void ShaderOff()
     {
 
-        Debug.Log("¿Í¾ÈµÇ³ó");
         materialList.Clear();
         materialList.AddRange(_renderer.sharedMaterials);
         materialList.Remove(OutlineMat);

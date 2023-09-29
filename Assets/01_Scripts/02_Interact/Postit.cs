@@ -21,7 +21,7 @@ public class Postit : Interactable
         if (!UIToolkitCs.OnElement && _count == 0)
         {
             QuestManager.Instance.SetProgress();
-            UIToolkitCs.OnPostIt("해야할일\n1. 통조림 챙기기\n2.문단속 잘하기\n3.안전하게 목적지 까지 도착하기");
+            UIToolkitCs.OnPostIt("왜인지 모르겠지만\nWASD로 움직일수있고\nE로 상호작용 할수 있을거 같다.   ");
             _count++;
             sign.SetActive(false);
             minimapSign.SetActive(false);

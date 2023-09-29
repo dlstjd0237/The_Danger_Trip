@@ -18,6 +18,10 @@ public class FadeImage : Singleton<FadeImage>
         FadeIn(null);
         
     }
+    /// <summary>
+    /// 1 => 0
+    /// </summary>
+    /// <param name="action"></param>
     public void FadeIn(Action action)
     {
         StartCoroutine(fadeIn(action));
@@ -33,6 +37,10 @@ public class FadeImage : Singleton<FadeImage>
         }
         action?.Invoke();
     }
+    /// <summary>
+    /// 0 => 1
+    /// </summary>
+    /// <param name="action"></param>
     public void FadeOut(Action action)
     {
         StartCoroutine(fadeOut(action));

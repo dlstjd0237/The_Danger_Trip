@@ -22,12 +22,18 @@ public class QuestManager : Singleton<QuestManager>
         _headLabel = _root.Q<Label>("HeadLabel");
         _bodyLavel = _root.Q<Label>("BodyLabel");
         _questButton = _root.Q<Button>("QuestButton");
+        Init();
+ 
+        Invoke("qwer", 3);
+    }
 
+    private void Init()
+    {
         for (int i = 0; i < QuestSo.QuestSo.Count; i++)
         {
             QuestDic.Add(QuestSo.QuestSo[i].KeyValue, QuestSo.QuestSo[i]);
+            QuestDic[QuestSo.QuestSo[i].KeyValue].Clear = false;
         }
-        Invoke("qwer", 3);
     }
     private void qwer()
     {
@@ -60,7 +66,6 @@ public class QuestManager : Singleton<QuestManager>
         {
             Invoke("QuestUIOff",1);
             QuestDic[_currentQuestKey].Clear = true;
-            Debug.Log(QuestDic[_currentQuestKey].Clear);
         }
     }
 
